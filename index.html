@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="app">
+        <div class="search-bar">
+            <input type="text" id="cityInput" placeholder="Enter City"><button id="searchBtn">Search</button>
+        </div>
+    
+        <div class="container">
+            <div class="card card1">
+                <h1 id="temperature">Loading...</h1>
+                <h3 id="cityName">Loading..</h3>
+                <h3 id="weather"></h3>
+                <h3 id="minmax"> </h3>
+            </div>
+            
+            <div class="card card2">
+                <h2 id="wind">Loading...</h2> 
+                <!-- wind icon, direction, animation -->
+            </div>
+            
+            <div class="card card3">
+                <h2 id="humidity">Loading...</h2>
+                <!-- progress cycle, water wave animation -->
+            </div>
+            
+            <div class="card card4">
+                <!-- slider sunrise/sunset -->
+                <span id="sunrise"></span>
+                <div class="sun-track">
+                    <div class="sun-progress"></div>
+                </div>
+                <span id="sunset"></span>
+            </div>
+            
+            <div class="card card5">
+                <h2 id="feelsLike">Loading...</h2>
+            </div>
+            
+            <div class="card card6">
+                <!-- hourly forcast -->
+                <div id="forcastContainer"></div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
