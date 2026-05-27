@@ -5,6 +5,28 @@ async function getCity(cityName) {
     console.log(data);
     return data;
 }
+function getWeatherCondition(code) {
+    console.log(code);
+    if (code === 0) {
+        return "Sunny";
+    }
+
+    else if (code <= 3) {
+        return "Cloudy";
+    }
+
+    else if (code >= 51 && code <= 67) {
+        return "Rainy";
+    }
+
+    else if (code >= 95) {
+        return "Thunderstorm";
+    }
+
+    else {
+        return "Unknown";
+    }
+}
 async function getWeather(cityName) {
     const cityData = await getCity(cityName);
     if (!cityData.results) {
@@ -16,7 +38,7 @@ async function getWeather(cityName) {
     const city = cityData.results[0].name;
     const coun = cityData.results[0].country; 
 
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m,apparent_temperature&daily=sunrise,sunset`);
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,weather_code&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m,apparent_temperature&daily=sunrise,sunset&timezone=auto`);
     const data = await response.json();
     console.log("Weather Data:");
     console.log(data);
@@ -24,6 +46,8 @@ async function getWeather(cityName) {
     const temperature = document.getElementById("temperature");
     const wind = document.getElementById("wind");
     const humidity = document.getElementById("humidity");
+    const weatherCondition = getWeatherCondition(data.current.weather_code);
+    const weather = document.getElementById("weather");
 
     const currentHour = data.current.time.slice(0, 13) + ":00";
     const startIndex = data.hourly.time.indexOf(currentHour);
@@ -42,9 +66,8 @@ async function getWeather(cityName) {
     const passed = now - sunrise;
     const percentage = (passed/totalDayLight)*100;
 
-    const progress = document.querySelector(".sun-progress");
-
     // card 4 : Sunrise/Sunset Progress
+    const progress = document.querySelector(".sun-progress");
     progress.style.width = percentage + "%";
 
     document.getElementById("sunrise").innerText = sunrise.toLocaleTimeString([], {
@@ -66,10 +89,10 @@ async function getWeather(cityName) {
     // Min and Max temperature (card 1)
 
     minmax.innerText = `Max: ${maxTemp}°  Min: ${minTemp}°`;
+    weather.innerHTML = weatherCondition;
 
     // Feels Like (card 4)
     feelsLike.innerText = "Feels Like: " + data.hourly.apparent_temperature[startIndex] + "°"
-    
 
     // forcast part (card 6)
     const forcastContainer = document.getElementById("forcastContainer");
@@ -85,6 +108,7 @@ async function getWeather(cityName) {
         </div>
         `;
     }
+
 }
 document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("searchBtn");

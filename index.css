@@ -15,6 +15,10 @@ body {
     flex-direction: column;
     gap: 20px;
 }
+.fa-magnifying-glass {
+    padding-right: 10px;
+    color: white;
+}
 .container {
     width:90%;
     height: 80vh;
@@ -28,20 +32,50 @@ body {
 }
 .card {
     border-radius: 30px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.341);
 
     backdrop-filter: blur(25px);
 
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 20px;
-    color: white;
+    color: rgba(0, 2, 55, 0.945);
     box-shadow: 0 8px 32px rgba(0,0,0,0.2);
 }
 .card1 {
     grid-row: span 2;
+    position: relative;
+    overflow: hidden;
+}
+.blob {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent);
+    top: -50px;
+    right: -50px;
+    border-radius: 50%;
+    animation: floatBlob 8s ease-in-out infinite;
+}
+@keyframes floatBlob {
+    0% {
+        transform: 
+            translateY(0px)
+            translateX(0px);
+    }
+    50% {
+        transform: 
+            translateY(40px)
+            translateX(-40px);
+    }
+    100% {
+        transform: 
+            translateY(0px)
+            translateX(0px);
+    }
 }
 .card3 {
     grid-column: span 1;
+    overflow: hidden;
 }
 .card6 {
     grid-column: span 2;
@@ -125,4 +159,11 @@ body {
     width: 50%;
     border-radius: 20px;
     background: linear-gradient(90deg, #ffd54f, #ff9800);
+}
+/* Icons */
+i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+    color: black;
 }
