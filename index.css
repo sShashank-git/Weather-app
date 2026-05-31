@@ -14,6 +14,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
 }
 .fa-magnifying-glass {
     padding-right: 10px;
@@ -40,11 +41,20 @@ body {
     padding: 20px;
     color: rgba(0, 2, 55, 0.945);
     box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    transition: ease 0.2s;
+}
+.card:hover {
+    transform: translateY(-3px);
 }
 .card1 {
     grid-row: span 2;
     position: relative;
     overflow: hidden;
+}
+.weather-effect {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
 }
 .blob {
     position: absolute;
@@ -71,6 +81,35 @@ body {
         transform: 
             translateY(0px)
             translateX(0px);
+    }
+}
+.card2{
+    overflow: hidden;
+}
+.wind-effect::before, .wind-effect::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    animation: drift 4s linear infinite;
+}
+.wind-effect::before {
+    top: 40%;
+    left: -120px;
+}
+.wind-effect::after {
+    top: 60%;
+    left: -150px;
+    animation-delay: 2s;
+}
+@keyframes drift {
+    from {
+        transform: translateX(-150px);
+    }
+    to {
+        transform: translateX(500px);
     }
 }
 .card3 {
