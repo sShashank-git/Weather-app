@@ -195,7 +195,7 @@ body {
 }
 .sun-progress {
     height: 100%;
-    width: 50%;
+    width: 0%;
     border-radius: 20px;
     background: linear-gradient(90deg, #ffd54f, #ff9800);
 }

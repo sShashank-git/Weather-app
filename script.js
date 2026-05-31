@@ -64,7 +64,9 @@ async function getWeather(cityName) {
 
     const totalDayLight = sunset - sunrise;
     const passed = now - sunrise;
-    const percentage = (passed/totalDayLight)*100;
+    let percentage = (passed/totalDayLight)*100;
+    percentage  = Math.max(0, Math.min(100, percentage));
+
 
     // card 4 : Sunrise/Sunset Progress
     const progress = document.querySelector(".sun-progress");
